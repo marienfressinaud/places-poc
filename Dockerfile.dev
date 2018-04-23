@@ -1,0 +1,32 @@
+FROM ruby:2.4-alpine
+MAINTAINER Marien Fressinaud <dev@marienfressinaud.fr>
+
+EXPOSE 3000
+
+WORKDIR /app/
+
+RUN apk add --no-cache \
+      nodejs \
+      postgresql-client \
+      tzdata \
+  && npm install npm@5 -g
+RUN apk --update add --virtual build-dependencies \
+      build-base \
+      ruby-dev \
+      openssl-dev \
+      postgresql-dev \
+      libc-dev \
+      linux-headers \
+      cmake \
+      gmp-dev
+
+COPY Gemfile Gemfile.lock /app/
+RUN gem install bundler \
+  && bundle install \
+  && apk del build-dependencies
+
+RUN npm install yarn -g
+
+VOLUME /app
+
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

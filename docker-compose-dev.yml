@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  place:
+    image: place:dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - db
+    links:
+      - db:db
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app:z
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_PORT: 5432
+      DATABASE_HOST: db
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
