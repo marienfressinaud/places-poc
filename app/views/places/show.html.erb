@@ -1,0 +1,16 @@
+<div class="card large">
+  <div class="vcard">
+    <hgroup>
+      <h1 class="org"><%= @place.name %></h1>
+      <h2 class="category"><%= @place.description %></h2>
+    </hgroup>
+
+    <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @place.map_location %>&markers=color:blue%7C<%= @place.map_location %>&size=640x250&scale=2&key=AIzaSyAqqBzxr-KVcEPceR2Gr--_DVA5fIZwG4s" />
+
+    <div class="adr">
+      <div class="street-address"><%= @place.address_line1 %></div>
+      <span class="postal-code"><%= @place.address_zip %></span>
+      <span class="locality"><%= @place.address_city %></span>
+    </div>
+  </div>
+</div>

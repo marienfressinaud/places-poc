@@ -1,0 +1,8 @@
+<h1>Places</h1>
+<h2 class="text-secondary subtitle">Where you build your online presence</h2>
+
+<% @places.each do |place| %>
+  <div class="card">
+    <a href="<%= place_path(place) %>"><%= place.name %></a> · <span class="text-secondary"><%= place.description %></span>
+  </div>
+<% end %>

@@ -1,0 +1,48 @@
+<div class="card large">
+  <h1>Your place</h1>
+
+  <%= form_with scope: :place, url: places_path, local: true do |form| %>
+    <% if @place.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@place.errors.count, "error") %> prohibited
+          this place from being saved:
+        </h2>
+        <ul>
+          <% @place.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <%= form.label :name %>
+      <%= form.text_field :name, required: true %>
+    </p>
+
+    <div class="p">
+      <%= form.label :address_line1, 'Address' %>
+      <%= form.text_field :address_line1, required: true %>
+
+      <div class="row">
+        <%= form.label :address_zip, 'Postal code' %>
+        <%= form.label :address_city, 'City' %>
+      </div>
+      <div class="row">
+        <%= form.text_field :address_zip, required: true %>
+        <%= form.text_field :address_city, required: true %>
+      </div>
+    </div>
+
+    <p>
+      <%= form.label :description %>
+      <%= form.text_field :description, required: true %>
+    </p>
+
+    <p class="form-actions">
+      <%= form.submit 'Create' %>
+    </p>
+
+  <% end %>
+</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>Places</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <div class="header">
+        <a href="<%= root_path %>">Home</a>
+        <div class="header-grower"></div>
+        <a href="<%= new_place_path %>" class="call-to-action">Build your place</a>
+      </div>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
